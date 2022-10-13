@@ -1,0 +1,1 @@
+/usr/bin/c++ -rdynamic CMakeFiles/main.dir/main.cpp.o CMakeFiles/main.dir/structure.cpp.o CMakeFiles/main.dir/solve.cpp.o -o main 

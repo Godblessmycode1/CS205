@@ -544,3 +544,5 @@ void solve(char operator_input,OperandStack* operand_stack,OperatorStack* operat
 
 ## 5.<a name='result'>结果
 ![结果截图](C:\Users\84781\Desktop\cpp结果.png)
+对于非法输入
+![非法输入截图](C:\Users\84781\Desktop\非法输入.png)

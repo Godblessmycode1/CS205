@@ -1,0 +1,1 @@
+/usr/bin/cc -rdynamic CMakeFiles/test.dir/test.c.o CMakeFiles/test.dir/matrix.c.o -o test 

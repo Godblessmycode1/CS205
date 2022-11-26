@@ -1,0 +1,1 @@
+/usr/bin/cc -rdynamic CMakeFiles/test_correct.dir/test_correct.o CMakeFiles/test_correct.dir/matrix.o CMakeFiles/test_correct.dir/multiply.o -o test_correct 

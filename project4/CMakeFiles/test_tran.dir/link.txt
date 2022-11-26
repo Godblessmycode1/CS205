@@ -1,0 +1,1 @@
+/usr/bin/cc -rdynamic CMakeFiles/test_tran.dir/test_tran.o CMakeFiles/test_tran.dir/matrix.o CMakeFiles/test_tran.dir/multiply.o -o test_tran 

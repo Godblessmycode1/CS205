@@ -1,0 +1,1 @@
+/usr/bin/cc -rdynamic CMakeFiles/test_fmatrix.dir/test_fmatrix.o CMakeFiles/test_fmatrix.dir/matrix.o -o test_fmatrix 

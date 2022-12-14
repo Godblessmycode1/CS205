@@ -1,0 +1,3 @@
+/mnt/c/Users/84781/Desktop/课程/大四上/cs205/projects/project5/CMakeFiles/test.dir
+/mnt/c/Users/84781/Desktop/课程/大四上/cs205/projects/project5/CMakeFiles/edit_cache.dir
+/mnt/c/Users/84781/Desktop/课程/大四上/cs205/projects/project5/CMakeFiles/rebuild_cache.dir

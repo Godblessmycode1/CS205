@@ -4,29 +4,33 @@ SID:11911702 <br>
 CS205 Project4 Report <br>
 代码链接如下<https://github.com/Godblessmycode1/CS205>
 
-- [Project4 矩阵加速](#project4-矩阵加速)
-- [介绍](#介绍)
-  - [Project要求介绍](#project要求介绍)
-  - [Project完成情况介绍](#project完成情况介绍)
-  - [开发环境](#开发环境)
-  - [文件结构介绍](#文件结构介绍)
-- [思路](#思路)
-  - [矩阵运算速度慢原因](#矩阵运算速度慢原因)
-  - [调研方法](#调研方法)
-  - [探索的思路](#探索的思路)
-    - [将矩阵转置再相乘](#将矩阵转置再相乘)
-    - [通过simd进行继续优化](#通过simd进行继续优化)
-    - [模拟cache加blocking加simd](#模拟cache加blocking加simd)
-    - [omp加simd加cache加blocking](#omp加simd加cache加blocking)
-    - [矩阵快速翻转](#矩阵快速翻转)
-- [代码](#代码)
-  - [矩阵翻转加速](#矩阵翻转加速)
-  - [翻转矩阵与simd](#翻转矩阵与simd)
-  - [翻转矩阵加simd加分块加人工cache](#翻转矩阵加simd加分块加人工cache)
-  - [矩阵快速翻转代码](#矩阵快速翻转代码)
-- [结果对比图](#结果对比图)
-- [结果截图](#结果截图)
-- [思考与总结](#思考与总结)
+<!-- TOC -->
+
+- [Project4 矩阵加速](#project4-%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F)
+- [介绍](#%E4%BB%8B%E7%BB%8D)
+    - [Project要求介绍](#project%E8%A6%81%E6%B1%82%E4%BB%8B%E7%BB%8D)
+    - [Project完成情况介绍](#project%E5%AE%8C%E6%88%90%E6%83%85%E5%86%B5%E4%BB%8B%E7%BB%8D)
+    - [开发环境](#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83)
+    - [文件结构介绍](#%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E4%BB%8B%E7%BB%8D)
+- [思路](#%E6%80%9D%E8%B7%AF)
+    - [矩阵运算速度慢原因](#%E7%9F%A9%E9%98%B5%E8%BF%90%E7%AE%97%E9%80%9F%E5%BA%A6%E6%85%A2%E5%8E%9F%E5%9B%A0)
+    - [调研方法](#%E8%B0%83%E7%A0%94%E6%96%B9%E6%B3%95)
+    - [探索的思路](#%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%80%9D%E8%B7%AF)
+        - [将矩阵转置再相乘](#%E5%B0%86%E7%9F%A9%E9%98%B5%E8%BD%AC%E7%BD%AE%E5%86%8D%E7%9B%B8%E4%B9%98)
+        - [通过simd进行继续优化](#%E9%80%9A%E8%BF%87simd%E8%BF%9B%E8%A1%8C%E7%BB%A7%E7%BB%AD%E4%BC%98%E5%8C%96)
+        - [模拟cache加blocking加simd](#%E6%A8%A1%E6%8B%9Fcache%E5%8A%A0blocking%E5%8A%A0simd)
+        - [omp加simd加cache加blocking](#omp%E5%8A%A0simd%E5%8A%A0cache%E5%8A%A0blocking)
+        - [矩阵快速翻转](#%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E7%BF%BB%E8%BD%AC)
+- [代码](#%E4%BB%A3%E7%A0%81)
+    - [矩阵翻转加速](#%E7%9F%A9%E9%98%B5%E7%BF%BB%E8%BD%AC%E5%8A%A0%E9%80%9F)
+    - [翻转矩阵与simd](#%E7%BF%BB%E8%BD%AC%E7%9F%A9%E9%98%B5%E4%B8%8Esimd)
+    - [翻转矩阵加simd加分块加人工cache](#%E7%BF%BB%E8%BD%AC%E7%9F%A9%E9%98%B5%E5%8A%A0simd%E5%8A%A0%E5%88%86%E5%9D%97%E5%8A%A0%E4%BA%BA%E5%B7%A5cache)
+    - [矩阵快速翻转代码](#%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E7%BF%BB%E8%BD%AC%E4%BB%A3%E7%A0%81)
+- [结果对比图](#%E7%BB%93%E6%9E%9C%E5%AF%B9%E6%AF%94%E5%9B%BE)
+- [结果截图](#%E7%BB%93%E6%9E%9C%E6%88%AA%E5%9B%BE)
+- [思考与总结](#%E6%80%9D%E8%80%83%E4%B8%8E%E6%80%BB%E7%BB%93)
+
+<!-- /TOC -->
 
 
 
